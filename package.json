@@ -4,7 +4,8 @@
   "description": "a simple blog based on react and redux",
   "main": "src/app.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack"
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack --watch"
   },
   "author": "jasonslyvia <jasonslyvia@gmail.com> (http://undefinedblog.com/)",
   "license": "ISC",
