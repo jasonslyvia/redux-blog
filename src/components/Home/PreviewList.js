@@ -3,11 +3,28 @@ import Preview from './Preview';
 
 export default class PreviewList extends React.Component {
   static propTypes = {
-    articleList: React.PropTypes.arrayOf(React.PropTypes.object)
+    loading: React.PropTypes.bool,
+    error: React.PropTypes.bool,
+    articleList: React.PropTypes.arrayOf(React.PropTypes.object),
+    loadArticles: React.PropTypes.func
   };
 
+  componentDidMount() {
+    this.props.loadArticles();
+  }
+
   render() {
-    return this.props.articleList.map(item => {
+    const { loading, error, articleList } = this.props;
+
+    if (error) {
+      return <p className="message">Oops, something is wrong.</p>;
+    }
+
+    if (loading) {
+      return <p className="message">Loading...</p>;
+    }
+
+    return articleList.map(item => {
       return <Preview {...item} key={item.id} />
     });
   }
