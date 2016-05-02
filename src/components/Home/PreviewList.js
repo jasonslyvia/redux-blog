@@ -6,7 +6,8 @@ export default class PreviewList extends React.Component {
     loading: React.PropTypes.bool,
     error: React.PropTypes.bool,
     articleList: React.PropTypes.arrayOf(React.PropTypes.object),
-    loadArticles: React.PropTypes.func
+    loadArticles: React.PropTypes.func,
+    push: React.PropTypes.func,
   };
 
   componentDidMount() {
@@ -24,8 +25,12 @@ export default class PreviewList extends React.Component {
       return <p className="message">Loading...</p>;
     }
 
-    return articleList.map(item => {
-      return <Preview {...item} key={item.id} />
-    });
+    return (
+      <div>
+        {articleList.map(item => {
+          return <Preview {...item} key={item.id} push={this.props.push} />
+        })}
+      </div>
+    );
   }
 }
